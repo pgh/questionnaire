@@ -1,0 +1,107 @@
+<?xml-stylesheet type="text/xml" href="../transformations/enhance-sheet.xslt" ?>
+<?xml-stylesheet type="text/css" href="../styles/questionnaire.css" ?>
+
+<questions xmlns="http://ghadir.de/definitions/questionnaire">
+
+<question kind="P">
+    <meta>
+        <id>pg20120629-1</id>
+        <status>X</status>
+        <refers-to>beschreibung</refers-to>
+        <rating></rating>
+        <votes></votes>
+    </meta>
+    <p>Wer hat's erfunden?</p>
+    <points>1</points>
+    <options>
+        <correct>Die Schweizer</correct>
+        <distractor>Die Griechen</distractor>
+        <correct>David Parnas</correct>
+        <distractor>BN</distractor>
+        <distractor>JP</distractor>
+    </options>
+</question>
+
+
+<question kind="P">
+    <meta>
+        <id>PG20120615_1</id>
+        <status>X</status>
+        <refers-to>Beschreibung</refers-to>
+        <rating></rating>
+        <votes></votes>
+    </meta>
+    <p>Wo sind wir gerade?</p>
+    <points>1</points>
+    <options>
+        <correct>Lissabon</correct>
+        <distractor>Madrid</distractor>
+        <correct>Düsseldorf</correct>
+        <distractor>blabla</distractor>
+    </options>
+</question>
+
+<question kind="K">
+   <meta>
+      <id>KKKK102203</id>
+      <status>X</status>
+      <refers-to>Beschreibung</refers-to>
+      <rating>1.8</rating>
+      <votes>4</votes>
+   </meta>
+   <p>Wer macht was?</p>
+   <points>2</points>
+   <categories>
+		<category label="a">Bäcker</category>
+		<category label="b">Metzger</category>
+	</categories>
+   <options>
+      <a>Kuchen</a>
+      <b>Wurst</b>
+      <a>Brötchen</a>
+      <a>Bretzel</a>
+      <b>Mett</b>
+      <a>Brot</a>
+   </options>
+</question>
+
+
+<question kind="A">
+    <meta>
+        <id>PG_20120523_2</id>
+        <status>X</status>
+        <refers-to>Beschreibung</refers-to>
+        <rating>blabla</rating>
+        <votes>0</votes>
+    </meta>
+    <p>Was ist kein RDBMS?</p>
+    <points>2</points>
+    <options>
+        <distractor>pointbase</distractor>
+        <distractor>h2</distractor>
+        <distractor>solid</distractor>
+        <distractor>DB2</distractor>
+        <distractor>Postgres</distractor>
+        <correct>CouchDB</correct>
+    </options>
+</question>
+<question kind="P">
+    <meta>
+        <id>id78429</id>
+        <status>X</status>
+        <refers-to>Beschreibung</refers-to>
+        <rating>1.3</rating>
+        <votes>4</votes>
+    </meta>
+    <p>Wer wird das so sehen, wie ich?</p>
+    <points>2</points>
+    <options>
+        <correct>alles wird gut</correct>
+        <correct>jetzt geht es weiter</correct>
+        <distractor>diesen nicht ankreuzen</distractor>
+        <correct>bla bla</correct>
+        <distractor>ajfdhjkf</distractor>
+    </options>
+</question>
+
+</questions>

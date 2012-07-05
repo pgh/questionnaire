@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:questionnaire="http://ghadir.de/definitions/questionnaire" targetNamespace="http://ghadir.de/definitions/questionnaire">
+  <xs:complexType name="questionCollection">
+    <xs:sequence>
+      <xs:element type="questionnaire:questionType" name="question" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="optionsType">
+    <xs:choice maxOccurs="unbounded" minOccurs="0">
+      <xs:element name="distractor" type="xs:string"/>
+      <xs:element name="correct" type="xs:string"/>
+      <xs:element type="xs:string" name="a"/>
+      <xs:element name="b" type="xs:string" />
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="categoriesType">
+    <xs:sequence>
+      <xs:element type="questionnaire:categoryType" name="category" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="categoryType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="label" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="questionType">
+    <xs:sequence>
+      <xs:element type="questionnaire:metaType" name="meta"/>
+      <xs:element name="p" type="xs:string"/>
+      <xs:element name="points">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="1"/>
+            <xs:enumeration value="2"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element type="questionnaire:categoriesType" name="categories" minOccurs="0"/>
+      <xs:element type="questionnaire:optionsType" name="options"/>
+    </xs:sequence>
+    <xs:attribute name="kind" use="required">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:enumeration value="P"/>
+                <xs:enumeration value="A"/>
+                <xs:enumeration value="K"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="metaType">
+    <xs:sequence>
+      <xs:element name="id" type="xs:ID"/>
+      <xs:element name="status">
+          <xs:simpleType>
+              <xs:restriction base="xs:string">
+                  <xs:enumeration value="X"/>
+                  <xs:enumeration value=""/>
+              </xs:restriction>
+          </xs:simpleType>
+      </xs:element>
+      <xs:element type="xs:string" name="refers-to"/>
+      <xs:element type="xs:string" name="rating"/>
+      <xs:element type="xs:string" name="votes"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="questions" type="questionnaire:questionCollection"/>
+</xs:schema>
