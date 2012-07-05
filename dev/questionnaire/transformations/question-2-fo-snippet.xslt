@@ -94,14 +94,6 @@
 		<fo:table-row border="1">
 
 			<fo:table-cell text-align="center"><fo:block><xsl:value-of select="name()"/></fo:block></fo:table-cell>
-			<!--
-			<fo:table-cell text-align="center"><fo:block><xsl:value-of select="isaqb:check_box('hhh','abc')"/></fo:block></fo:table-cell>
-			-->
-
-<!--
-			<fo:table-cell text-align="center"><fo:block><xsl:value-of select="isaqb:get_check_box( name() = 'a' )"/></fo:block></fo:table-cell>
-			<fo:table-cell text-align="center"><fo:block><xsl:value-of select="isaqb:get_check_box( name() = 'b' )"/></fo:block></fo:table-cell>
-			-->
 			<fo:table-cell><fo:block><xsl:value-of select="."/></fo:block></fo:table-cell>
 		</fo:table-row>
 		
