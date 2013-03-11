@@ -43,7 +43,7 @@
 
 	<xsl:template name="header">
 		<xsl:text>Typ, Anzahl, Punkte, Optionen, davon korrekt, Kategorien
-		</xsl:text>
+</xsl:text>
 	</xsl:template>
 
 	<xsl:template name="entry">
