@@ -25,6 +25,20 @@
 				<xsl:value-of select="count(t:question[@kind='K']/t:categories/t:category)" />
 			</xsl:with-param>
 		</xsl:call-template>
+		<xsl:text>
+</xsl:text>
+		<xsl:for-each-group select="t:question" group-by="@kind">
+		<xsl:call-template name="entry">
+			<xsl:with-param name="type" select="current-grouping-key()" />
+			<xsl:with-param name="number" select="count(current-group())" />
+			<xsl:with-param name="points" select="sum(current-group()/t:points)" />
+			<xsl:with-param name="options" select="count(current-group()/t:options/*)" />
+			<xsl:with-param name="correct" select="count(current-group()/t:options/t:correct)" />
+			<xsl:with-param name="categories" select="count(current-group()/t:categories/t:category)" />
+		</xsl:call-template>
+		<xsl:text>
+</xsl:text>
+		</xsl:for-each-group>
 	</xsl:template>
 
 	<xsl:template name="header">
