@@ -43,8 +43,11 @@
     <xs:attribute name="kind" use="required">
         <xs:simpleType>
             <xs:restriction base="xs:string">
+            	<!-- pick multiple -->
                 <xs:enumeration value="P"/>
+                <!-- answer exactly one -->
                 <xs:enumeration value="A"/>
+                <!-- assign to category -->
                 <xs:enumeration value="K"/>
             </xs:restriction>
         </xs:simpleType>
