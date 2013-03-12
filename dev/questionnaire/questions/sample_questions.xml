@@ -7,7 +7,7 @@
     <meta>
         <id>pg20120629-1</id>
         <status>X</status>
-        <refers-to>beschreibung</refers-to>
+        <refers-to>Beschreibung</refers-to>
         <rating></rating>
         <votes></votes>
     </meta>
@@ -85,6 +85,46 @@
         <correct>CouchDB</correct>
     </options>
 </question>
+
+<question kind="A">
+    <meta>
+        <id>GP_20130312_1</id>
+        <status>X</status>
+        <refers-to>Literatur</refers-to>
+        <rating>blabla</rating>
+        <votes>0</votes>
+    </meta>
+    <p>Wer ist kein SciFi-Autor?</p>
+    <points>2</points>
+    <options>
+        <distractor>Clark</distractor>
+        <distractor>Gibson</distractor>
+        <distractor>Jeschke</distractor>
+        <correct>Tolkien</correct>
+        <distractor>Williams</distractor>
+        <distractor>Niven</distractor>
+    </options>
+</question>
+
+<question kind="P">
+    <meta>
+        <id>GP_20130312_1</id>
+        <status>X</status>
+        <refers-to>Literatur</refers-to>
+        <rating>1.3</rating>
+        <votes>4</votes>
+    </meta>
+    <p>Welcher der folgenden Autoren ist bereits verstorben?</p>
+    <points>2</points>
+    <options>
+        <correct>Sagan</correct>
+        <correct>Clark</correct>
+        <distractor>Hawking</distractor>
+        <correct>Asimov</correct>
+        <distractor>Gaiman</distractor>
+    </options>
+</question>
+
 <question kind="P">
     <meta>
         <id>id78429</id>
