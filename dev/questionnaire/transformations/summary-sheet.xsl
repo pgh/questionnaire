@@ -18,12 +18,6 @@
 			<xsl:with-param name="options">
 				<xsl:value-of select="count(t:question/t:options/*)" />
 			</xsl:with-param>
-			<xsl:with-param name="correct">
-				<xsl:value-of select="count(t:question/t:options/t:correct)" />
-			</xsl:with-param>
-			<xsl:with-param name="categories">
-				<xsl:value-of select="count(t:question[@kind='K']/t:categories/t:category)" />
-			</xsl:with-param>
 		</xsl:call-template>
 		<xsl:text>
 </xsl:text>
@@ -33,8 +27,6 @@
 			<xsl:with-param name="number" select="count(current-group())" />
 			<xsl:with-param name="points" select="sum(current-group()/t:points)" />
 			<xsl:with-param name="options" select="count(current-group()/t:options/*)" />
-			<xsl:with-param name="correct" select="count(current-group()/t:options/t:correct)" />
-			<xsl:with-param name="categories" select="count(current-group()/t:categories/t:category)" />
 		</xsl:call-template>
 		<xsl:text>
 </xsl:text>
@@ -42,7 +34,7 @@
 	</xsl:template>
 
 	<xsl:template name="header">
-		<xsl:text>Typ, Anzahl, Punkte, Optionen, davon korrekt, Kategorien
+		<xsl:text>Typ, Anzahl, Punkte, Optionen
 </xsl:text>
 	</xsl:template>
 
@@ -51,8 +43,6 @@
 		<xsl:param name="number" />
 		<xsl:param name="points" />
 		<xsl:param name="options" />
-		<xsl:param name="correct" />
-		<xsl:param name="categories" />
 		<xsl:value-of select="$type" />
 		<xsl:value-of select="', '"/>
 		<xsl:value-of select="$number"/>
@@ -60,10 +50,6 @@
 		<xsl:value-of select="$points"/>
 		<xsl:value-of select="', '"/>
 		<xsl:value-of select="$options"/>
-		<xsl:value-of select="', '"/>
-		<xsl:value-of select="$correct"/>
-		<xsl:value-of select="', '"/>
-		<xsl:value-of select="$categories"/>
 	</xsl:template>
 
 	<xsl:template match="*">
