@@ -21,16 +21,9 @@
 			</xsl:with-param>
 		</xsl:call-template>
 		<xsl:text>&#xa;</xsl:text>
-		<xsl:for-each-group select="t:question" group-by="@kind">
-			<xsl:call-template name="entry">
-				<xsl:with-param name="type" select="current-grouping-key()" />
-				<xsl:with-param name="number" select="count(current-group())" />
-				<xsl:with-param name="points" select="sum(current-group()/t:points)" />
-				<xsl:with-param name="options"
-					select="count(current-group()/t:options/*)" />
-			</xsl:call-template>
-			<xsl:text>&#xa;</xsl:text>
-		</xsl:for-each-group>
+		<xsl:call-template name="questions_by_kind">
+			<xsl:with-param name="refers-group" select="t:question"/>
+		</xsl:call-template>
 		<xsl:text>&#xa;</xsl:text>
 		<xsl:call-template name="questions_by_refers"/>
 	</xsl:template>
@@ -45,7 +38,6 @@
 			</xsl:call-template>
 			<xsl:text>&#xa;</xsl:text>
 		</xsl:for-each-group>
-		
 	</xsl:template>
 	
 	<xsl:template name="questions_by_kind">
