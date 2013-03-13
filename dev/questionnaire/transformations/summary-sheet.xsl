@@ -30,29 +30,40 @@
 			</xsl:call-template>
 			<xsl:text>&#xa;</xsl:text>
 		</xsl:for-each-group>
+		<xsl:call-template name="questions_by_refers"/>
 		<xsl:text>&#xa;</xsl:text>
-		<xsl:for-each-group select="."
-			group-by="t:question/t:meta/t:refers-to">
+	</xsl:template>
+	
+	<xsl:template name="questions_by_refers">
+		<xsl:for-each-group select="t:question"
+			group-by="t:meta/t:refers-to">
 			<xsl:value-of select="current-grouping-key()"></xsl:value-of>
 			<xsl:text>:&#xa;</xsl:text>
-			<xsl:value-of select="count(current-group())" />
-			<xsl:text>&#xa;</xsl:text>
-			<xsl:call-template name="test">
-				<xsl:with-param name="context" select="current-group()"/>
+			<xsl:call-template name="questions_by_kind">
+				<xsl:with-param name="refers-group" select="current-group()"/>
 			</xsl:call-template>
 			<xsl:text>&#xa;</xsl:text>
 		</xsl:for-each-group>
+		
 	</xsl:template>
 	
-	<xsl:template name="test">
-		<xsl:param name="context"/>
-		<xsl:for-each-group select="t:question" group-by="@kind">
-			<xsl:value-of select="current-grouping-key()"></xsl:value-of>
-			<xsl:text>:&#xa;</xsl:text>
-			<xsl:value-of select="count(current-group())" />
-			<xsl:text>&#xa;</xsl:text>			
+	<xsl:template name="questions_by_kind">
+		<xsl:param name="refers-group"/>
+		<xsl:for-each-group select="$refers-group" group-by="@kind">
+			<xsl:variable name="detail_type" select="current-grouping-key()" />
+			<xsl:variable name="detail_number" select="count(current-group())" />
+			<xsl:variable name="detail_points" 
+				select="sum(current-group()/t:points)" />
+			<xsl:variable name="detail_options"
+				select="count(current-group()/t:options/*)" />			
+			<xsl:call-template name="entry">
+				<xsl:with-param name="type" select="$detail_type" />
+				<xsl:with-param name="number" select="$detail_number" />
+				<xsl:with-param name="points" select="$detail_points" />
+				<xsl:with-param name="options" select="$detail_options" />
+			</xsl:call-template>
+			<xsl:text>&#xa;</xsl:text>
 		</xsl:for-each-group>
-		<xsl:value-of select="$context"/>
 	</xsl:template>
 
 	<xsl:template name="header">
