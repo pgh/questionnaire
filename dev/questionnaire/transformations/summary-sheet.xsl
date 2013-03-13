@@ -7,8 +7,9 @@
 
 	<xsl:template match="/t:questions">
 		<xsl:call-template name="header" />
+		<xsl:text>Gesamt:&#xa;</xsl:text>
 		<xsl:call-template name="entry">
-			<xsl:with-param name="type" select="'total'" />
+			<xsl:with-param name="type" select="'Alle'" />
 			<xsl:with-param name="number">
 				<xsl:value-of select="count(t:question)" />
 			</xsl:with-param>
@@ -30,8 +31,8 @@
 			</xsl:call-template>
 			<xsl:text>&#xa;</xsl:text>
 		</xsl:for-each-group>
-		<xsl:call-template name="questions_by_refers"/>
 		<xsl:text>&#xa;</xsl:text>
+		<xsl:call-template name="questions_by_refers"/>
 	</xsl:template>
 	
 	<xsl:template name="questions_by_refers">
@@ -67,7 +68,7 @@
 	</xsl:template>
 
 	<xsl:template name="header">
-		<xsl:text>Typ, Anzahl, Punkte, Optionen&#xa;</xsl:text>
+		<xsl:text>Typ, Anzahl, Punkte, Optionen&#xa;&#xa;</xsl:text>
 	</xsl:template>
 
 	<xsl:template name="entry">
