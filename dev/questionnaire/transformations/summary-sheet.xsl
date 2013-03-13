@@ -10,19 +10,10 @@
 		<xsl:text>Gesamt:&#xa;</xsl:text>
 		<xsl:call-template name="entry">
 			<xsl:with-param name="type" select="'Alle'" />
-			<xsl:with-param name="number">
-				<xsl:value-of select="count(t:question)" />
-			</xsl:with-param>
-			<xsl:with-param name="points">
-				<xsl:value-of select="sum(t:question/t:points)" />
-			</xsl:with-param>
-			<xsl:with-param name="options">
-				<xsl:value-of select="count(t:question/t:options/*)" />
-			</xsl:with-param>
+			<xsl:with-param name="question-list" select="t:question"/>
 		</xsl:call-template>
-		<xsl:text>&#xa;</xsl:text>
 		<xsl:call-template name="questions_by_kind">
-			<xsl:with-param name="refers-group" select="t:question"/>
+			<xsl:with-param name="context-group" select="t:question"/>
 		</xsl:call-template>
 		<xsl:text>&#xa;</xsl:text>
 		<xsl:call-template name="questions_by_refers"/>
@@ -33,29 +24,25 @@
 			group-by="t:meta/t:refers-to">
 			<xsl:value-of select="current-grouping-key()"></xsl:value-of>
 			<xsl:text>:&#xa;</xsl:text>
+			<xsl:call-template name="entry">
+				<xsl:with-param name="type" select="'Alle'" />
+				<xsl:with-param name="question-list" select="current-group()"/>
+			</xsl:call-template>
 			<xsl:call-template name="questions_by_kind">
-				<xsl:with-param name="refers-group" select="current-group()"/>
+				<xsl:with-param name="context-group" select="current-group()"/>
 			</xsl:call-template>
 			<xsl:text>&#xa;</xsl:text>
 		</xsl:for-each-group>
 	</xsl:template>
 	
 	<xsl:template name="questions_by_kind">
-		<xsl:param name="refers-group"/>
-		<xsl:for-each-group select="$refers-group" group-by="@kind">
+		<xsl:param name="context-group"/>
+		<xsl:for-each-group select="$context-group" group-by="@kind">
 			<xsl:variable name="detail_type" select="current-grouping-key()" />
-			<xsl:variable name="detail_number" select="count(current-group())" />
-			<xsl:variable name="detail_points" 
-				select="sum(current-group()/t:points)" />
-			<xsl:variable name="detail_options"
-				select="count(current-group()/t:options/*)" />			
 			<xsl:call-template name="entry">
 				<xsl:with-param name="type" select="$detail_type" />
-				<xsl:with-param name="number" select="$detail_number" />
-				<xsl:with-param name="points" select="$detail_points" />
-				<xsl:with-param name="options" select="$detail_options" />
+				<xsl:with-param name="question-list" select="current-group()" />
 			</xsl:call-template>
-			<xsl:text>&#xa;</xsl:text>
 		</xsl:for-each-group>
 	</xsl:template>
 
@@ -64,10 +51,11 @@
 	</xsl:template>
 
 	<xsl:template name="entry">
-		<xsl:param name="type" />
-		<xsl:param name="number" />
-		<xsl:param name="points" />
-		<xsl:param name="options" />
+		<xsl:param name="question-list"/>
+		<xsl:param name="type"/>
+		<xsl:variable name="number" select="count($question-list)"/>
+		<xsl:variable name="points" select="sum($question-list/t:points)"/>
+		<xsl:variable name="options" select="count($question-list/t:options/*)"/>
 		<xsl:value-of select="$type" />
 		<xsl:value-of select="', '" />
 		<xsl:value-of select="$number" />
@@ -75,6 +63,7 @@
 		<xsl:value-of select="$points" />
 		<xsl:value-of select="', '" />
 		<xsl:value-of select="$options" />
+		<xsl:text>&#xa;</xsl:text>
 	</xsl:template>
 
 </xsl:stylesheet>
