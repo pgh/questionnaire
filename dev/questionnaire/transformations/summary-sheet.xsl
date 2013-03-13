@@ -31,15 +31,32 @@
 			<xsl:text>&#xa;</xsl:text>
 		</xsl:for-each-group>
 		<xsl:text>&#xa;</xsl:text>
-		<xsl:for-each-group select="t:question" group-by="t:meta/t:refers-to">
+		<xsl:for-each-group select="."
+			group-by="t:question/t:meta/t:refers-to">
 			<xsl:value-of select="current-grouping-key()"></xsl:value-of>
-			<xsl:text>:&#xa;&#xa;</xsl:text>
+			<xsl:text>:&#xa;</xsl:text>
+			<xsl:value-of select="count(current-group())" />
+			<xsl:text>&#xa;</xsl:text>
+			<xsl:call-template name="test">
+				<xsl:with-param name="context" select="current-group()"/>
+			</xsl:call-template>
+			<xsl:text>&#xa;</xsl:text>
 		</xsl:for-each-group>
+	</xsl:template>
+	
+	<xsl:template name="test">
+		<xsl:param name="context"/>
+		<xsl:for-each-group select="t:question" group-by="@kind">
+			<xsl:value-of select="current-grouping-key()"></xsl:value-of>
+			<xsl:text>:&#xa;</xsl:text>
+			<xsl:value-of select="count(current-group())" />
+			<xsl:text>&#xa;</xsl:text>			
+		</xsl:for-each-group>
+		<xsl:value-of select="$context"/>
 	</xsl:template>
 
 	<xsl:template name="header">
-		<xsl:text>Typ, Anzahl, Punkte, Optionen
-</xsl:text>
+		<xsl:text>Typ, Anzahl, Punkte, Optionen&#xa;</xsl:text>
 	</xsl:template>
 
 	<xsl:template name="entry">
@@ -54,16 +71,6 @@
 		<xsl:value-of select="$points" />
 		<xsl:value-of select="', '" />
 		<xsl:value-of select="$options" />
-	</xsl:template>
-
-	<xsl:template match="*">
-		<xsl:copy>
-			<xsl:apply-templates select="@*|node()" />
-		</xsl:copy>
-	</xsl:template>
-
-	<xsl:template match="@*|text()|comment()|processing-instruction()">
-		<xsl:copy-of select="." />
 	</xsl:template>
 
 </xsl:stylesheet>
